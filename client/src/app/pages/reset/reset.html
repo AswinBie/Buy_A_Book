@@ -1,0 +1,27 @@
+<div class="lg:w-3/12 mt-40 p-10 rounded-md shadow-lg mx-auto">
+    <h3 class="text-3xl text-bold py-5">Reset Your password</h3>
+    <form [formGroup]="resetForm" class="flex flex-col">
+        <span class="mb-2">
+            Please use strong password
+        </span>
+        <div class="flex flex-col mt-4 mb-1">
+            <input formControlName="password" class="p-2 border border-gray-300 rounded" type="text" placeholder="Password">
+            @if (resetForm.get('password')?.hasError('required') && resetForm.get('password')?.dirty) {
+            <span class="text-red-500">* Password is required</span>
+            }
+        </div>
+        <div class="flex flex-col mt-4 mb-1">
+            <input formControlName="confirmPassword" class="p-2 border border-gray-300 rounded" type="text" placeholder="Confirm password">
+            @if (resetForm.get('confirmPassword')?.hasError('required') && resetForm.get('confirmPassword')?.dirty) {
+            <span class="text-red-500">* Confirm password is required</span>
+            }
+            @if (resetForm.get('confirmPassword')?.hasError('confirmPasswordValidator') && resetForm.get('confirmPassword')?.dirty ) {
+            <span class="text-red-500">* Password didn't match</span>
+            }
+        </div>
+        <div class="mt-2">
+            <button (click)="reset()" [disabled]="resetForm.invalid" [class.disabled]="resetForm.invalid"
+            class="bg-blue-500 p-2 rounded mt-3 text-white">Submit</button>
+        </div>
+    </form>
+</div>
