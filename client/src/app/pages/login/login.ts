@@ -29,12 +29,14 @@ export default class Login {
       next: (response) => {
         alert('Login Successfull');
         console.log('Login Details', response);
+        localStorage.setItem('user_id', response.data._id);
+        this.authService.isLoggedIn$.next(true);
         this.router.navigate(['home']);
         this.loginForm.reset();
       },
       error: (err) => {
         console.log('Error:', err);
-        alert(err.error?.message)
+        alert(err.error?.message);
       },
     });
   }
