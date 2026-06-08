@@ -34,6 +34,7 @@ export default class Login {
       },
       error: (err) => {
         console.log('Error:', err);
+        alert(err.error?.message)
       },
     });
   }

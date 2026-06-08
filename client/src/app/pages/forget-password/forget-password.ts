@@ -24,5 +24,15 @@ export default class ForgetPassword implements OnInit {
 
   sendEmail() {
     console.log(this.forgetPasswordForm.value);
+    this.authService.sendEmail(this.forgetPasswordForm.value.email)
+    .subscribe({
+      next: (res) => {
+        alert(res.message);
+        this.forgetPasswordForm.reset()
+      },
+      error: (err) => {
+        alert(err.error.message);
+      }
+    })
   }
 }

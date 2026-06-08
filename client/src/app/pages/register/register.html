@@ -1,4 +1,4 @@
-<div class="lg:w-3/12 mt-5 p-10 shadow-lg mx-auto">
+<div class="lg:w-3/12 mt-40 p-10 shadow-lg mx-auto">
     <h3 class="text-3xl text-center font-semibold text-blue-400">Register</h3>
     <form [formGroup]="registerForm" class="flex flex-col">
         <div class="flex flex-col mt-4 mb-1">
@@ -43,7 +43,9 @@
             <span class="text-red-500">* Password didn't match</span>
             }
         </div>
-        <button [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" class="bg-blue-500 p-2 rounded mt-3 text-white" (click)="register()">Submit</button>
+        <div class="mt-2 text-center">
+            <button [disabled]="registerForm.invalid" [class.disabled]="registerForm.invalid" class="bg-blue-500 p-2 rounded mt-3 text-white" (click)="register()">Submit</button>
+        </div>
     </form>
     <div class="flex justify-center mt-5">
         <span>Already have an account?</span><a routerLink="/login" class="text-blue-600 ml-2 cursor-pointer">login here</a>

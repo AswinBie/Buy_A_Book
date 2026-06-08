@@ -138,3 +138,30 @@ exports.sendEmail = async(req, res, next) => {
         }
     })
 }
+
+exports.resetPassword = async( req,res,next) => {
+    const token = req.body.token;
+    const newPaasword = req.body.password;
+
+    jwt.verify(token, process.env.JWT_TOKEN, async(err, data)=> {
+        if(err){
+            return next(CreateError(500,"Reset link is expired"));
+        }else{
+            const response = data;
+            const foundUser = await user.findOne({email:{ $regex: '^'+response.email+'$', $options:'i'}});
+            const salt = await bcrypt.genSalt(10);
+            const encryptedPassword = await bcrypt.hash(newPaasword, salt);
+            foundUser.password = encryptedPassword;
+            try {
+                const updateduser = await user.findOneAndUpdate(
+                    {_id: foundUser._id},
+                    { $set: foundUser},
+                    { new : true}
+                )
+                return next(CreateSuccess(200, "Password Reset successfull!..."))
+            } catch (error) {
+                return next(CreateError(200, "Something went wrong while resetting the password!..."))
+            }
+        }
+    })
+}
