@@ -17,7 +17,7 @@
         }
         @if(isLoggedIn){
             <span routerLink="/login" class="text-sm cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-300">Cart</span>
-            <span routerLink="/login" class="text-sm cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-300">Welcome User</span>
+            <span routerLink="/login" class="text-sm cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-300" (click)="logOut()">Welcome User</span>
             <span routerLink="/login" class="text-sm cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-300" (click)="logOut()">logout</span>
         }
     </div>
